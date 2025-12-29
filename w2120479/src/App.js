@@ -83,6 +83,24 @@ function App() {
           ))}
           
         </section>
+
+        {/* Favorites List */}
+        {favorites.length > 0 && (
+          <section className="favorites-list" style={{backgroundColor: '#b6dcf4ff', padding: '15px', border: '2px solid #000', borderRadius: '10px', marginTop: '30px'}}>
+            <h2>Favorites</h2>
+            <ul>
+              {favorites.map(fav => (
+                <li key={fav.id}>
+                  <button 
+                  onClick={() => RemoveFromFavorites(fav.id)}
+                  style={{ margingLeft: '10px', color: 'red', cursor: 'pointer', border: 'none', background: 'none' }}>
+                  [Remove]
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </main>
     </div>
   );
