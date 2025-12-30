@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
 import './App.css';
 import propertiesData from "./properties.json";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import SearchForm from "./components/SearchForm";
 import PropertyCard from "./components/PropertyCard";
+import PropertyDetails from './components/PropertyDetails';
 
 function App() {
   //load properties data into state//
   const [properties] = useState(propertiesData.properties);
-
   //set filtered properties state//
   const [filteredProperties, setFilteredProperties] = useState(propertiesData.properties);
-
   //set favorites state//
   const [favorites, setFavorites] = useState([]);
+  //set selected property for details view//
+  const [selectedProperty, setSelectedProperty] = useState(null);
+
 
 
   //handle search after clicks search//
   const handleSearch = (searchCriteria) => {
+
     //filter properties based on search criteria//
     const results = properties.filter(property => {
       
       //check each criteria//
-      const typeMatch = searchCriteria.type === "any" || property.type === searchCriteria.type;
+      const typeMatch = searchCriteria.type === "any" || property.type.toLowerCase() === searchCriteria.type.toLowerCase();
       
       //price//
-      const minPriceMatch = searchCriteria.minPrice === "" || 
-      property.price >= parseInt(searchCriteria.minPrice);
-      
-      const maxPriceMatch = searchCriteria.maxPrice === "" || 
-      property.price <= parseInt(searchCriteria.maxPrice);
+      const minPriceMatch = Number(searchCriteria.minPriceMatch) || 0;
+      const maxPriceMatch = Number(searchCriteria.maxPriceMatch) || 10000000;
+      const priceMatch = property.price >= minPriceMatch && property.price <= maxPriceMatch;
       
       //bedrooms//
-      const minBedroomsMatch = searchCriteria.minBedrooms === "" || 
-      property.bedrooms >= parseInt(searchCriteria.minBedrooms);
+      const minBedroomsMatch = Number(searchCriteria.minBedroomsMatch) || 0;
+      const maxBedroomsMatch = Number(searchCriteria.maxBedroomsMatch) || 100;
+      const bedMatch = property.bedrooms >= minBedroomsMatch && property.bedrooms <= maxBedroomsMatch;
       
-      const maxBedroomsMatch = searchCriteria.maxBedrooms === "" 
-      || property.bedrooms <= parseInt(searchCriteria.maxBedrooms);
-
       //postcode//
       const postcodeMatch = searchCriteria.postcode === "" 
       || property.location
@@ -44,7 +45,7 @@ function App() {
       .includes(searchCriteria.postcode.toLowerCase());
 
 
-      return typeMatch && minPriceMatch && maxPriceMatch && minBedroomsMatch && maxBedroomsMatch && postcodeMatch;
+      return typeMatch && priceMatch && bedMatch && postcodeMatch;
     });
 
     //update filtered properties state//
@@ -71,56 +72,76 @@ function App() {
     setFavorites(updatedFavorites);
   };
 
+  if (selectedProperty) {
+    return (
+      <div className="App">
+        <NavBar onLogoClick={() => setSelectedProperty(null)} />
+
+          <main style={{ padding: '20px' }}>
+            <PropertyDetails 
+              property={selectedProperty} 
+              onBack={() => setSelectedProperty(null)} 
+            />
+          </main>
+
+        <Footer />
+      </div>
+
+    );
+  }
+
+
   return (
     <div className="App">
-      <header>
-        <h1>W2120479</h1>
-      </header>
+      <NavBar onLogoClick={() => setSelectedProperty(null)} />
 
-      <main>
+        <main style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+          <SearchForm onSearch={handleSearch} />
 
-        {/* Search Form Component */}
-        <SearchForm onSearch={handleSearch} />
-        
-        {/* Properties List */}
-        <h2>Properties results ({filteredProperties.length})</h2>
-        <section className="properties-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+          {favorites.length > 0 && (
+            <div style={{ marginBottom: '20px' }}>
+              <h2>Favorites</h2>
+              <ul>
+                {favorites.map(fav => (
+                  <li key={fav.id} style={{ marginBottom: '10px' }}>
+                    {fav.location} - {fav.price.toLocaleString()}
+                    <button 
+                      onClick={() => RemoveFromFavorites(fav)}
+                      style={{ marginLeft: '10px', padding: '5px 10px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                      Remove
+                    </button>
+                  </li> 
+                ))}
+              </ul>
+            </div>
+          )}
           
-          {/* Show message if no properties found */}
-          {filteredProperties.length === 0 && <p>No properties found matching the criteria.</p>}
+          <h2>results({filteredProperties.length})</h2>
 
-          {/*loop for filtered properties and show them*/}
-          {filteredProperties.map(property => (
-            <PropertyCard 
-            key={property.id} 
-            property={property} 
-            onAddToFavorites={AddToFavorites} 
-            onRemoveFromFavorites={RemoveFromFavorites} />
-          ))}
-          
-        </section>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+            {filteredProperties.length === 0 && <p>No properties found matching your criteria.</p>}
 
-        {/* Favorites List */}
-        {favorites.length > 0 && (
-          <section className="favorites-list" style={{backgroundColor: '#b6dcf4ff', padding: '15px', border: '2px solid #000', borderRadius: '10px', marginTop: '30px'}}>
-            <h2>Favorites</h2>
-            <ul>
-              {favorites.map(fav => (
-                <li key={fav.id}>
+            {filteredProperties.map(property => (
+              <div key = {property.id}>
+                <PropertyCard 
+                  property={property} 
+                  onAddToFavorites={AddToFavorites}/>
+
                   <button 
-                  onClick={() => RemoveFromFavorites(fav)}
-                  style={{ marginLeft: '10px', color: 'red', cursor: 'pointer', border: 'none', background: 'none' }}>
-                  [Remove]
+                    onClick={() => setSelectedProperty(property)}
+                    style={{ marginTop: '10px', padding: '10px 15px', backgroundColor: '#17a2b8', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    View Details
                   </button>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-      </main>
-    </div>
-  );
+              </div>
+            ))}
+          </div>
+        </main>
+      <Footer />
+
+
+    </div>  );
 }
+
 
 export default App;
   
