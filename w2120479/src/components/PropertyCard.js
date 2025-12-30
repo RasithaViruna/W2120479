@@ -4,7 +4,7 @@ function PropertyCard({ property, onAddToFavorites }) {
   return (
     <div className="property-card" style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '15px', marginBottom: '15px', backgroundColor: '#f9f9f9' }}>
 
-        <img src={property.image} alt={property.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px' }} />
+        <img src={property.picture} alt={property.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10px' }} />
 
         <h3>{property.location}</h3>
         <h4 style={{ color: '#555' }}>{property.price.toLocaleString()}</h4>

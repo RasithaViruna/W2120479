@@ -27,6 +27,20 @@ function SearchForm({ onSearch }) {
         onSearch(criteria);
     };
 
+    //handle reset//
+    const handleReset = ()=> {
+        const resetCiteria = {
+            type: "any",
+            minPrice: "",
+            maxPrice: "",
+            minBedrooms: "",
+            maxBedrooms: "",
+            postcode:""
+        };
+        setCriteria(resetCiteria);
+        onSearch({});
+    }
+
     return (
 
         <div className="search-form" style={{ marginBottom: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '10px', backgroundColor: '#f1f1f1' }}>
@@ -62,9 +76,7 @@ function SearchForm({ onSearch }) {
                     <label>Postcode:</label>
                     <input type="text" name="postcode" value={criteria.postcode} onChange={handleChange} />
 
-                    <label>Added After:</label>
-                    <input type="date" name="dateAdded" onChange={handleChange} />
-                
+                    
                     <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
                         Search
                     </button>
