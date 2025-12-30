@@ -1,4 +1,4 @@
-import react from "react";
+import React, { useState } from 'react';
 import './App.css';
 import propertiesData from "./properties.json";
 import SearchForm from "./components/SearchForm";
@@ -6,7 +6,7 @@ import PropertyCard from "./components/PropertyCard";
 
 function App() {
   //load properties data into state//
-  const [properties, setProperties] = useState(propertiesData.properties);
+  const [properties] = useState(propertiesData.properties);
 
   //set filtered properties state//
   const [filteredProperties, setFilteredProperties] = useState(propertiesData.properties);
@@ -22,11 +22,27 @@ function App() {
       
       //check each criteria//
       const typeMatch = searchCriteria.type === "any" || property.type === searchCriteria.type;
-      const minPriceMatch = searchCriteria.minPrice === "" || property.price >= parseInt(searchCriteria.minPrice);
-      const maxPriceMatch = searchCriteria.maxPrice === "" || property.price <= parseInt(searchCriteria.maxPrice);
-      const minBedroomsMatch = searchCriteria.minBedrooms === "" || property.bedrooms >= parseInt(searchCriteria.minBedrooms);
-      const maxBedroomsMatch = searchCriteria.maxBedrooms === "" || property.bedrooms <= parseInt(searchCriteria.maxBedrooms);
-      const postcodeMatch = searchCriteria.postcode === "" || property.location.toLowerCase().includes(searchCriteria.postcode.toLowerCase());
+      
+      //price//
+      const minPriceMatch = searchCriteria.minPrice === "" || 
+      property.price >= parseInt(searchCriteria.minPrice);
+      
+      const maxPriceMatch = searchCriteria.maxPrice === "" || 
+      property.price <= parseInt(searchCriteria.maxPrice);
+      
+      //bedrooms//
+      const minBedroomsMatch = searchCriteria.minBedrooms === "" || 
+      property.bedrooms >= parseInt(searchCriteria.minBedrooms);
+      
+      const maxBedroomsMatch = searchCriteria.maxBedrooms === "" 
+      || property.bedrooms <= parseInt(searchCriteria.maxBedrooms);
+
+      //postcode//
+      const postcodeMatch = searchCriteria.postcode === "" 
+      || property.location
+      .toLowerCase()
+      .includes(searchCriteria.postcode.toLowerCase());
+
 
       return typeMatch && minPriceMatch && maxPriceMatch && minBedroomsMatch && maxBedroomsMatch && postcodeMatch;
     });
@@ -92,8 +108,8 @@ function App() {
               {favorites.map(fav => (
                 <li key={fav.id}>
                   <button 
-                  onClick={() => RemoveFromFavorites(fav.id)}
-                  style={{ margingLeft: '10px', color: 'red', cursor: 'pointer', border: 'none', background: 'none' }}>
+                  onClick={() => RemoveFromFavorites(fav)}
+                  style={{ marginLeft: '10px', color: 'red', cursor: 'pointer', border: 'none', background: 'none' }}>
                   [Remove]
                   </button>
                 </li>
