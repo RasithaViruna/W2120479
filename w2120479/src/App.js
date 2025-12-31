@@ -106,34 +106,12 @@ function App() {
         <main className = "main">
           <SearchForm onSearch={handleSearch} />
 
-          {favorites.length > 0 && (
-            <section className='favarites-section'>
-              <h2>Favorites</h2>
-              <ul>
-                {favorites.map(fav => (
-                  <li key={fav.id} className='favarite-item'>
-                    {fav.location} - {fav.price.toLocaleString()}
-                    <button
-                      className='btn remove' 
-                      onClick={() => RemoveFromFavorites(fav)}
-                      >
-                      Remove
-                    </button>
-                  </li> 
-                ))}
-              </ul>
-            </section>
-          )}
-          
-          <h2 className='results'>
-            results({filteredProperties.length})
-          </h2>
-
-          <div className='property'>
+          <div className='content-layout'>
+            <section className='property'>
             {filteredProperties.length === 0 && <p>No properties found matching your criteria.</p>}
 
             {filteredProperties.map(property => (
-              <div key = {property.id}>
+              <div key = {property.id} className='prop-card'>
                 <PropertyCard 
                   property={property} 
                   onAddToFavorites={AddToFavorites}/>
@@ -146,7 +124,32 @@ function App() {
                   </button>
               </div>
             ))}
+            </section>
+
+            {favorites.length > 0 && (
+            <aside className='favorites-bar'>
+              <h2>Favorites</h2>
+              <ul>
+                {favorites.map(fav => (
+                  <li key={fav.id} className='favorite-item'>
+                    {fav.location} - {fav.price.toLocaleString()}
+                    <button
+                      className='btn remove' 
+                      onClick={() => RemoveFromFavorites(fav)}
+                      >
+                      Remove
+                    </button>
+                  </li> 
+                ))}
+              </ul>
+            </aside>
+          )}
+
+            
           </div>
+
+          
+        
         </main>
       <Footer />
 

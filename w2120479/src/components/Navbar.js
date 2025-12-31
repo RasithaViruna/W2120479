@@ -1,26 +1,20 @@
 import React from 'react';
+import "../styles/NavBar.css";
 
 function NavBar ({ onLogoClick }) {
     return (
-        <nav style =  {{
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            padding: '10px 20px', 
-            backgroundColor: '#333', 
-            color: 'white',
-            }}>
+        <nav className='navbar'>
 
-            <h2 
+            <h2 className='logo'
               onClick={onLogoClick}
-              style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+              >
                 W2120479
             </h2>
 
-            <div>
-                <span style={{ marginRight: '20px', cursor: 'pointer' }}>For Sale</span>
-                <span style={{ marginRight: '20px', cursor: 'pointer' }}>To Rent</span>
-                <span style={{ cursor: 'pointer' }}>Contact Us</span>
+            <div className='navbar-links'>
+                <span className='navbar-link'>For Sale</span>
+                <span className='navbar-link'>To Rent</span>
+                <span className='navbar-link'>Contact Us</span>
             </div>
         </nav>
     );
