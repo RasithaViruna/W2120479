@@ -26,23 +26,31 @@ function App() {
     const results = properties.filter(property => {
       
       //check each criteria//
-      const typeMatch = searchCriteria.type === "any" || property.type.toLowerCase() === searchCriteria.type.toLowerCase();
-      
+      const type = searchCriteria.type || "any";
+      const typeMatch = 
+         type === "any" || 
+         property.type.toLowerCase() === type.toLowerCase();
+
       //price//
-      const minPriceMatch = Number(searchCriteria.minPriceMatch) || 0;
-      const maxPriceMatch = Number(searchCriteria.maxPriceMatch) || 10000000;
-      const priceMatch = property.price >= minPriceMatch && property.price <= maxPriceMatch;
+      const minPrice = Number(searchCriteria.minPrice) || 0;
+      const maxPrice = Number(searchCriteria.maxPrice) || 10000000;
+      const priceMatch = 
+      property.price >= minPrice && 
+      property.price <= maxPrice;
       
       //bedrooms//
-      const minBedroomsMatch = Number(searchCriteria.minBedroomsMatch) || 0;
-      const maxBedroomsMatch = Number(searchCriteria.maxBedroomsMatch) || 100;
-      const bedMatch = property.bedrooms >= minBedroomsMatch && property.bedrooms <= maxBedroomsMatch;
+      const minBedrooms = Number(searchCriteria.minBedrooms) || 0;
+      const maxBedrooms = Number(searchCriteria.maxBedrooms) || 100;
+      const bedMatch = 
+      property.bedrooms >= minBedrooms && 
+      property.bedrooms <= maxBedrooms;
       
       //postcode//
-      const postcodeMatch = searchCriteria.postcode === "" 
-      || property.location
-      .toLowerCase()
-      .includes(searchCriteria.postcode.toLowerCase());
+      const postcode = searchCriteria.postcode || "";
+      const postcodeMatch = 
+      postcode === ""||
+      property.location.toLowerCase().includes(postcode.toLowerCase());
+      
 
 
       return typeMatch && priceMatch && bedMatch && postcodeMatch;
@@ -77,7 +85,7 @@ function App() {
       <div className="App">
         <NavBar onLogoClick={() => setSelectedProperty(null)} />
 
-          <main style={{ padding: '20px' }}>
+          <main className='main'>
             <PropertyDetails 
               property={selectedProperty} 
               onBack={() => setSelectedProperty(null)} 
@@ -95,30 +103,33 @@ function App() {
     <div className="App">
       <NavBar onLogoClick={() => setSelectedProperty(null)} />
 
-        <main style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <main className = "main">
           <SearchForm onSearch={handleSearch} />
 
           {favorites.length > 0 && (
-            <div style={{ marginBottom: '20px' }}>
+            <section className='favarites-section'>
               <h2>Favorites</h2>
               <ul>
                 {favorites.map(fav => (
-                  <li key={fav.id} style={{ marginBottom: '10px' }}>
+                  <li key={fav.id} className='favarite-item'>
                     {fav.location} - {fav.price.toLocaleString()}
-                    <button 
+                    <button
+                      className='btn remove' 
                       onClick={() => RemoveFromFavorites(fav)}
-                      style={{ marginLeft: '10px', padding: '5px 10px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                      >
                       Remove
                     </button>
                   </li> 
                 ))}
               </ul>
-            </div>
+            </section>
           )}
           
-          <h2>results({filteredProperties.length})</h2>
+          <h2 className='results'>
+            results({filteredProperties.length})
+          </h2>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+          <div className='property'>
             {filteredProperties.length === 0 && <p>No properties found matching your criteria.</p>}
 
             {filteredProperties.map(property => (
@@ -127,9 +138,10 @@ function App() {
                   property={property} 
                   onAddToFavorites={AddToFavorites}/>
 
-                  <button 
+                  <button
+                    className='btn info' 
                     onClick={() => setSelectedProperty(property)}
-                    style={{ marginTop: '10px', padding: '10px 15px', backgroundColor: '#17a2b8', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    >
                     View Details
                   </button>
               </div>

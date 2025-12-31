@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React, { useState } from 'react';
 
 function SearchForm({ onSearch }) {
@@ -38,7 +37,7 @@ function SearchForm({ onSearch }) {
             postcode:""
         };
         setCriteria(resetCiteria);
-        onSearch({});
+        onSearch({resetCiteria});
     }
 
     return (
@@ -79,6 +78,10 @@ function SearchForm({ onSearch }) {
                     
                     <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
                         Search
+                    </button>
+
+                    <button type="button" onClick={handleReset} style={{ padding: '10px 15px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                        Reset
                     </button>
 
                 </div>
