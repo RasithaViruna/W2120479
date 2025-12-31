@@ -7,6 +7,7 @@
     height: 100%;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
 }
 
 .property-card:hover {
@@ -42,7 +43,7 @@
 }
 
 .property-card p:nth-of-type(3) {
-  height: 64px;          /* ⭐ KEY FIX */
+  height: 64px;          
   overflow: hidden;
   margin-bottom: 10px;
 }
@@ -55,7 +56,7 @@
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #28a745;
+  background-color: #ae1cc8;
   color: white;
   font-weight: 500;
   cursor: pointer;
@@ -63,5 +64,5 @@
 }
 
 .btn.favorite:hover {
-  background-color: #218838;
+  background-color: #520055;
 }

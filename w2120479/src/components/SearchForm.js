@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../styles/SearchForm.css";
 
 function SearchForm({ onSearch }) {
 
@@ -42,45 +43,56 @@ function SearchForm({ onSearch }) {
 
     return (
 
-        <div className="search-form" style={{ marginBottom: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '10px', backgroundColor: '#f1f1f1' }}>
+        <div className="search-form" >
 
             <h2>Search Properties</h2>
             <form onSubmit={handleSubmit}>
 
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+                <div className='search'>
                     {/*type*/}
+                  <div className="search-group">
                     <label>Type:</label>
                     <select name="type" value={criteria.type} onChange={handleChange}>
                         <option value="any">Any</option>
                         <option value="house">House</option>
                         <option value="Flat">Flat</option>
                     </select>
+                  </div>
 
                     {/*price*/}
+                  <div className="search-group">  
                     <label>Min Price:</label>
                     <input type="number" name="minPrice" value={criteria.minPrice} onChange={handleChange} />
+                  </div>
 
+                  <div className="search-group">
                     <label>Max Price:</label>
                     <input type="number" name="maxPrice" value={criteria.maxPrice} onChange={handleChange} />
+                  </div>
 
                     {/*bedrooms*/}
+                  <div className="search-group">
                     <label>Min Bedrooms:</label>
                     <input type="number" name="minBedrooms" value={criteria.minBedrooms} onChange={handleChange} />
+                  </div>
 
+                  <div className="search-group">
                     <label>Max Bedrooms:</label>
                     <input type="number" name="maxBedrooms" value={criteria.maxBedrooms} onChange={handleChange} />
- 
+                  </div>
+
                     {/*postcode*/}
+                  <div className="search-group">
                     <label>Postcode:</label>
                     <input type="text" name="postcode" value={criteria.postcode} onChange={handleChange} />
-
+                  </div>
                     
-                    <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    <button type="submit" >
                         Search
                     </button>
 
-                    <button type="button" onClick={handleReset} style={{ padding: '10px 15px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    <button type="button" onClick={handleReset} >
                         Reset
                     </button>
 
