@@ -1,47 +1,40 @@
 import React, { useState } from 'react';
-
+import '../styles/PropertyDetails.css';
 function PropertyDetails({ property, onBack }) {
   const [activeTab, setActiveTab] = useState('description');
 
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+    <div className='property-details'>
       
       {/* BACK BUTTON */}
       <button
-        onClick={onBack}
-        style={{
-          marginBottom: '20px',
-          padding: '10px 15px',
-          backgroundColor: '#007bff',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
+        onClick={onBack} className='back-btn'
       >
         Back to Search
       </button>
 
       {/* TITLE */}
       <h2>{property.location}</h2>
-      <h2 style={{ color: '#007bff' }}>
+      <h2 className='price'>
         {property.price.toLocaleString()}
       </h2>
 
       {/* GALLERY */}
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', overflowX: 'auto' }}>
+      <div className='gallery'>
         {property.images && property.images.map((img, index) => (
+         <div className="gallery-item" key={index}> 
           <img
             key={index}
             src={'/' + img}
             alt="property"
-            style={{ height: '150px', borderRadius: '8px', border: '1px solid #ccc' }}
+           
           />
+         </div> 
         ))}
       </div>
 
       {/* TABS */}
-      <div style={{ display: 'flex', borderBottom: '2px solid #ccc', marginBottom: '20px' }}>
+      <div className='tabs'>
         <button
           onClick={() => setActiveTab('description')}
           style={{ padding: '10px 20px', background: activeTab === 'description' ? '#eee' : '#fff', border: 'none' }}
@@ -65,6 +58,7 @@ function PropertyDetails({ property, onBack }) {
       </div>
 
       {/* TAB CONTENT */}
+      <div className='tab-content'>
       {activeTab === 'description' && (
         <div>
           <h3>Description</h3>
@@ -75,10 +69,14 @@ function PropertyDetails({ property, onBack }) {
       )}
 
       {activeTab === 'floorplan' && (
-        <div style={{ padding: '40px', background: '#ddd', textAlign: 'center' }}>
-          Floor Plan Image
-        </div>
-      )}
+      <div className='floorplan-tab'>
+       <img
+        src={'/' + property.floorplan}
+        alt="floorplan"
+        className='floorplan-img'
+       />
+      </div>
+)}
 
       {activeTab === 'map' && (
         <div style={{ padding: '40px', background: '#e0f7fa', textAlign: 'center' }}>
@@ -86,6 +84,7 @@ function PropertyDetails({ property, onBack }) {
         </div>
       )}
 
+    </div>
     </div>
   );
 }
