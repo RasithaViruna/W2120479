@@ -5,8 +5,9 @@
   justify-content: center;
   align-items: center;
   gap: 60px;
-  background: #ffffff00;
+  background: #adadad3f;
   font-family:'Inter', system-ui, sans-serif;
+  border-bottom: 1px solid#78787860;
 
 }
 
