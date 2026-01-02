@@ -1,8 +1,8 @@
 {
   "name": "w2120479",
-  "homepage": "https://rasithaviruna.github.io/W2120479",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rasithaviruna.github.io/W2120479",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
