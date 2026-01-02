@@ -5,8 +5,8 @@
 }
 
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+  background-color: #dbdbdb;
 }
 
 .app {
@@ -16,9 +16,9 @@ body{
 }
 
 .main{
-  padding: 20px;
+  padding: 40px 24px;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .btn{
@@ -32,7 +32,7 @@ body{
 
 .btn.info {
   margin-top: 5px;
-  background-color: #17a2b8;
+  background-color: #4296e0;
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -70,9 +70,9 @@ body{
 .favorites-bar {
   width: 250px;
   background-color: #ffffff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
   position: sticky;
   top: 20px;
   height: fit-content;
@@ -99,8 +99,8 @@ body{
   align-items: center;
   flex-direction: column;
   gap: 5px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 10px 0;
+  border: 1px solid #eee;
   background-color: #f9f9f9;
   
 }
@@ -132,9 +132,67 @@ body{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  flex: 1; /* take all remaining space */
+  flex: 1; 
 }
 
+
+
+/*HERO SECTION*/
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 800px;
+  object-fit:fill;
+  filter: brightness(0.9); 
+  border-radius: 100px;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 9vw; 
+  font-weight: 800;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hero-text h2 {
+  font-size: 4vw; 
+  font-weight: 800;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: -200px;         
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
 
 
 /* MOBILE RESPONSIVE */
@@ -148,5 +206,18 @@ body{
     position: relative;
     top: auto;
     margin-bottom: 20px;
+  }
+
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
   }
 }

@@ -7,6 +7,8 @@ import SearchForm from "./components/SearchForm";
 import PropertyCard from "./components/PropertyCard";
 import PropertyDetails from './components/PropertyDetails';
 
+
+
 function App() {
   //load properties data into state//
   const [properties] = useState(propertiesData.properties);
@@ -16,6 +18,9 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   //set selected property for details view//
   const [selectedProperty, setSelectedProperty] = useState(null);
+
+
+
 
 
 
@@ -60,6 +65,9 @@ function App() {
     setFilteredProperties(results);
   };
 
+
+
+
   //handle add to favorites//
   const AddToFavorites = (property) => {
 
@@ -80,6 +88,11 @@ function App() {
     setFavorites(updatedFavorites);
   };
 
+
+
+
+
+  //details// 
   if (selectedProperty) {
     return (
       <div className="App">
@@ -98,12 +111,30 @@ function App() {
     );
   }
 
+  
+
 
   return (
     <div className="App">
       <NavBar onLogoClick={() => setSelectedProperty(null)} />
 
         <main className = "main">
+
+          {/* HERO SECTION */}
+          <section className="hero">
+            <div className="hero-image">
+             <img src="/hero.jpg" alt="home" />
+              <div className="hero-text">
+                <h2>EstateX</h2>
+                <h1>Dream Home</h1>
+                <p>Luxury & Comfort, Modern living starts here</p>
+            
+                <p className="scroll-down"><strong>scroll down</strong></p>
+              </div>
+            </div>
+          </section>
+
+          {/*search form*/}
           <SearchForm onSearch={handleSearch} />
 
           <div className='content-layout'>

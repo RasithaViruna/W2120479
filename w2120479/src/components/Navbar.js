@@ -8,7 +8,7 @@ function NavBar ({ onLogoClick }) {
             <h2 className='logo'
               onClick={onLogoClick}
               >
-                W2120479
+                EstateX
             </h2>
 
             <div className='navbar-links'>
