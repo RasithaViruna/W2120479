@@ -5,7 +5,7 @@ function PropertyCard({ property, onAddToFavorites }) {
   return (
     <div className="property-card" >
 
-        <img src={process.env.PUBLIC_URL + "/" +property.picture} alt={property.title} />
+        <img src={`${process.env.PUBLIC_URL}/${property.picture}`} alt={property.title} />
         
 
       

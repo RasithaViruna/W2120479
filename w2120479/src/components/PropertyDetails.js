@@ -24,7 +24,7 @@ function PropertyDetails({ property, onBack }) {
          <div className="gallery-item" key={index}> 
           <img
             key={index}
-            src={process.env.PUBLIC_URL + '/' + img}
+            src={`${process.env.PUBLIC_URL}/${img}`}
             alt="property"
            
           />
@@ -70,7 +70,7 @@ function PropertyDetails({ property, onBack }) {
       {activeTab === 'floorplan' && (
       <div className='floorplan-tab'>
        <img
-        src={process.env.PUBLIC_URL +'/' + property.floorplan}
+        src={`${process.env.PUBLIC_URL}/${property.floorplan}`}
         alt="floorplan"
         className='floorplan-img'
        />
