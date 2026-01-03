@@ -8,8 +8,7 @@ function PropertyDetails({ property, onBack }) {
       
       {/* BACK BUTTON */}
       <button
-        onClick={onBack} className='back-btn'
-      >
+        onClick={onBack} className='back-btn'>
         Back to Search
       </button>
 
@@ -25,7 +24,7 @@ function PropertyDetails({ property, onBack }) {
          <div className="gallery-item" key={index}> 
           <img
             key={index}
-            src={'/' + img}
+            src={process.env.PUBLIC_URL + '/' + img}
             alt="property"
            
           />
@@ -71,7 +70,7 @@ function PropertyDetails({ property, onBack }) {
       {activeTab === 'floorplan' && (
       <div className='floorplan-tab'>
        <img
-        src={'/' + property.floorplan}
+        src={process.env.PUBLIC_URL +'/' + property.floorplan}
         alt="floorplan"
         className='floorplan-img'
        />

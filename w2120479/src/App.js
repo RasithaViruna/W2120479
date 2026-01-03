@@ -116,23 +116,25 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar onLogoClick={() => setSelectedProperty(null)} />
-
-        <main className = "main">
-
-          {/* HERO SECTION */}
+      
+      {/* HERO SECTION */}
           <section className="hero">
+            <NavBar onLogoClick={() => setSelectedProperty(null)} />
             <div className="hero-image">
-             <img src="/hero.jpg" alt="home" />
+             <img src={process.env.PUBLIC_URL + "/hero.jpg"} alt="home" className='hero-img' />
               <div className="hero-text">
+                <div className='heroText'>
                 <h2>EstateX</h2>
                 <h1>Dream Home</h1>
                 <p>Luxury & Comfort, Modern living starts here</p>
-            
+                </div>
                 <p className="scroll-down"><strong>scroll down</strong></p>
               </div>
             </div>
           </section>
+        <main className = "main">
+
+        
 
           {/*search form*/}
           <SearchForm onSearch={handleSearch} />

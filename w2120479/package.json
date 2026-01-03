@@ -2,7 +2,7 @@
   "name": "w2120479",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://RasithaViruna.github.io/W2120479",
+  "homepage": "https://rasithaviruna.github.io/W2120479",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -11,7 +11,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.11.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

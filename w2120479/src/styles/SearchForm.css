@@ -1,6 +1,6 @@
 .search-form {
-  background:linear-gradient(#e5e5e5);
-  padding: 16px 1px ;
+  background:linear-gradient(#545454);
+  padding: 20px 30px ;
   border-radius: 12px;
   margin-bottom: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -13,7 +13,7 @@
 .search-form h2 {
   margin-bottom: 15px;
   font-size: 1.4rem;
-  color: #222;
+  color: #fbfbfb;
 }
 
 .search {
@@ -34,16 +34,17 @@
 .search label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #444;
+  color: #ffffff;
 }
 
 .search-group input,
 .search-group select {
   padding:7Px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #606060;
   font-size: 0.9rem;
   width: 100%;
+  background-color: #919191;
 }
 
 .search select[name="type"] {

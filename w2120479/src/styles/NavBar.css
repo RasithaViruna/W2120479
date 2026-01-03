@@ -4,10 +4,14 @@
   justify-content: space-between;
   align-items: center;
   padding:0 40px;
-  background: #ffffff;
+  background: #ffffff00;
   font-family:'Inter', system-ui, sans-serif;
-  border-bottom: 1px solid#78787860;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 10;
 
 }
 

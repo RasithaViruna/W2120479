@@ -1,5 +1,5 @@
 .property-card {
-    background: #ffff;
+    background: #434343;
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -24,21 +24,21 @@
 
 .property-card h3 {
   font-size: 1.1rem;
-  color: #333;
+  color: #c7c7c7;
   margin: 16px 16px 16px;
 }
 
 .property-card h4 {
   font-size: 1rem;
   margin: 0 16px;
-  color: #2563eb;
+  color: #4cdeff;
   font-weight: 800;
 }
 
 .property-card p {
 
   font-size: 0.9rem;
-  color: #555;
+  color: #cacaca;
   margin:6px 16px;
 }
 
@@ -56,9 +56,10 @@
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #ae1cc8;
-  color: white;
+  background-color: #000000;
+  color: rgb(158, 0, 170);
   font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: background 0.2s ease;
 }
