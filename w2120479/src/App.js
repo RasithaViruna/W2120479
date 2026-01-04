@@ -136,7 +136,7 @@ function App() {
 
         
 
-          {/*search form*/}
+          
           <SearchForm onSearch={handleSearch} />
 
           <div className='content-layout'>
